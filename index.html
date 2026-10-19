@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=1400">
+<title>CRM Setup Status</title>
+<style>
+:root{--g:#16a34a;--gb:#dcfce7;--a:#d97706;--ab:#fef3c7;--r:#dc2626;--rb:#fee2e2;--x:#64748b;--xb:#e2e8f0;--ink:#0f172a;--mut:#475569;--line:#e2e8f0;--bg:#f8fafc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);font-size:14px;line-height:1.4}
+.wrap{width:1400px;margin:0 auto;padding:28px 36px 40px}
+header{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;border-radius:16px;padding:24px 28px;display:flex;justify-content:space-between;align-items:flex-end}
+header h1{margin:0;font-size:30px;letter-spacing:-.5px}
+header .sub{opacity:.85;font-size:16px;margin-top:4px}
+header .meta{text-align:right;font-size:13px;opacity:.9}
+.badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:3px 10px;border-radius:999px;font-weight:600;margin-top:6px}
+.legend{display:flex;gap:18px;margin:16px 2px 6px;flex-wrap:wrap;font-size:13px;color:var(--mut)}
+.legend span{display:flex;align-items:center;gap:6px}
+.dot{width:14px;height:14px;border-radius:4px;display:inline-block}
+.d-g{background:var(--g)}.d-a{background:var(--a)}.d-r{background:var(--r)}.d-x{background:var(--x)}
+h2{font-size:20px;margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+h2 .n{background:var(--ink);color:#fff;border-radius:8px;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+/* process map */
+.lane{border:1px solid var(--line);border-radius:12px;padding:14px 16px 16px;margin-bottom:12px;background:#fff}
+.lane-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.lane-h b{font-size:16px}
+.lane-h .own{font-size:12px;color:var(--mut)}
+.flow{display:flex;align-items:stretch;gap:0}
+.col{display:flex;flex-direction:column;gap:8px;justify-content:center}
+.arrow{display:flex;align-items:center;justify-content:center;width:34px;flex:0 0 34px;color:#94a3b8;font-size:22px;font-weight:700}
+.st{border-radius:10px;padding:9px 11px;border:2px solid;min-width:150px;max-width:200px;background:#fff}
+.st .t{font-weight:700;font-size:14px}
+.st .s{font-size:11.5px;color:var(--mut);margin-top:2px}
+.st.g{border-color:var(--g);background:var(--gb)}
+.st.r{border-color:var(--r);background:var(--rb);border-style:dashed}
+.st.trig{border-color:#1e3a8a;background:#eff6ff}
+.wf{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:var(--r);background:#fff;border:1px solid #fca5a5;border-radius:999px;padding:1px 8px}
+.extras{margin-top:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--mut)}
+.chip{background:var(--ab);border:1px solid #f59e0b;color:#92400e;border-radius:999px;padding:3px 10px;text-decoration:line-through;font-weight:600}
+.handoff{display:flex;align-items:center;gap:12px;margin:2px 0 12px 40px;color:var(--mut);font-size:13px}
+.handoff .bar{width:3px;height:26px;background:#94a3b8;border-radius:2px}
+.warn{border:2px solid var(--a);background:var(--ab);border-radius:12px;padding:12px 16px;margin-top:4px}
+.warn b{color:#92400e}
+.warn .list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.wpill{font-size:12px;background:#fff;border:1px solid #f59e0b;border-radius:6px;padding:2px 8px}
+.wpill.dr{border-style:dashed;color:var(--mut)}
+.note{font-size:12px;color:var(--mut);margin-top:8px}
+/* status grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.sc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.sc h3{margin:0 0 2px;font-size:14px}
+.sc .tot{font-size:12px;color:var(--mut)}
+.bar{display:flex;height:12px;border-radius:999px;overflow:hidden;background:#f1f5f9;margin:10px 0 8px}
+.bar i{display:block;height:100%}
+.cnt{display:flex;gap:10px;font-size:12px;flex-wrap:wrap}
+.cnt span{display:flex;align-items:center;gap:4px}
+.cnt .dot{width:10px;height:10px;border-radius:3px}
+.sc .why{font-size:12px;color:var(--mut);margin-top:8px}
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;position:relative}
+.step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;position:relative;border-top:4px solid var(--r)}
+.step .num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.step .tt{font-weight:700;margin:8px 0 4px;font-size:13.5px}
+.step .dd{font-size:12px;color:var(--mut)}
+.step .ef{margin-top:8px;font-size:11.5px;background:#f1f5f9;border-radius:6px;padding:3px 7px;display:inline-block}
+.step.big{border-top-color:#7c3aed}
+/* decisions */
+.dec{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.dq{background:#fff;border:1px solid var(--line);border-left:5px solid var(--x);border-radius:10px;padding:10px 12px;font-size:13px}
+.dq b{display:block;margin-bottom:2px}
+.dq.hot{border-left-color:var(--a);background:#fffbeb}
+footer{margin-top:24px;font-size:12px;color:var(--mut)}
+</style></head><body><div class="wrap">
+
+<header>
+  <div><h1>CRM Setup Status</h1><div class="sub">GoHighLevel setup status: what's done and what's next</div></div>
+  <div class="meta">Client sub-account (anonymized)<br>Audit: Mon Oct 19, 2026 (EDT)<br><span class="badge">Read-only: nothing changed in GHL</span></div>
+</header>
+
+<div class="legend">
+  <span><i class="dot d-g"></i>Done</span>
+  <span><i class="dot d-a"></i>Partly done / needs a fix</span>
+  <span><i class="dot d-r"></i>Missing</span>
+  <span><i class="dot d-x"></i>Can't check through the API / needs a decision</span>
+</div>
+
+<section id="map">
+<h2><span class="n">1</span>Process map: the two pipelines (from your consolidated doc)</h2>
+<div class="card">
+
+  <div class="lane">
+    <div class="lane-h"><b>Outbound Dialers</b><span class="own">Owner: sales lead · Calls: hired dialers (round-robin) · Stages built ✔</span></div>
+    <div class="flow">
+      <div class="col"><div class="st trig"><div class="t">✉ Email open / click</div><div class="s">Eligible, not yet registered lead</div><span class="wf">Entry + S2: not built</span></div></div>
+      <div class="arrow">→</div>
+      <div class="col"><div class="st g"><div class="t">New Warm Lead</div><div class="s">1 opportunity per person, owner kept</div><span class="wf">Entry: not built</span></div></div>
+      <div class="arrow">→</div>
+      <div class="col"><div class="st g"><div class="t">Attempting Contact</div><div class="s">Counts unanswered calls</div><span class="wf">D1–D9: not built</span></div></div>
+      <div class="arrow">→</div>
+      <div class="col"><div class="st g"><div class="t">Contacted</div><div class="s">Spoke with the lead</div><span class="wf">D1–D9: not built</span></div></div>
+      <div class="arrow">→</div>
+      <div class="col"><div class="st g"><div class="t">Registration Link Sent</div><div class="s">Link sent by the dialer</div><span class="wf">D1–D9: not built</span></div></div>
+      <div class="arrow">→</div>
+      <div class="col">
+        <div class="st g"><div class="t">Registered</div><div class="s">Stops promo emails and calls</div><span class="wf">E1: not built</span></div>
+        <div class="st g"><div class="t">Not Interested</div><div class="s">Stays visible, never reopened</div><span class="wf">D-series: not built</span></div>
+        <div class="st g"><div class="t">Dead</div><div class="s">After 8 unanswered calls</div><span class="wf">D-series: not built</span></div>
+      </div>
+    </div>
+    <div class="extras">Live stages to remove: <span class="chip">Not Registered</span><span class="chip">Unresponsive</span><span class="chip">Current Coaching Student</span></div>
+  </div>
+
+  <div class="handoff"><div class="bar"></div>Registers (dialer link, ads, DMs, website…) → <span class="wf" style="margin:0">E1 registration handoff: not built</span> sets Ticket Type, source, round-robin dialer; removes the contact from the dialer and promo workflows</div>
+
+  <div class="lane">
+    <div class="lane-h"><b>Event Registration — Nov Event</b><span class="own">Owner: sales lead · Calls: sales lead + dialers · 1 opportunity per person per event · 1 test opportunity live</span></div>
+    <div class="flow">
+      <div class="col"><div class="st g"><div class="t">New Registrant</div><div class="s">GA or VIP in the Ticket Type field</div><span class="wf">E1 + E2 VIP: not built</span></div></div>
+      <div class="arrow">→</div>
+      <div class="col"><div class="st g"><div class="t">Attempting Contact</div><div class="s">Attendance-confirm calls</div><span class="wf">Confirm calls: not built</span></div></div>
+      <div class="arrow">→</div>
+      <div class="col">
+        <div class="st g"><div class="t">Seat Confirmed</div><div class="s">Will attend</div></div>
+        <div class="st g"><div class="t">Seat Unconfirmed</div><div class="s">After 8 unanswered calls</div></div>
+        <div class="st r"><div class="t">Not Interested</div><div class="s">MISSING stage: add it</div></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col">
+        <div class="st g"><div class="t">Attended Day 1</div><div class="s">Check-in tag + date kept</div><span class="wf">E3: not built</span></div>
+        <div class="st g"><div class="t">Attended Day 2</div><div class="s">Check-in tag + date kept</div><span class="wf">E3: not built</span></div>
+        <div class="st g"><div class="t">Attended Both Days</div><div class="s">Both dates kept</div><span class="wf">E3: not built</span></div>
+        <div class="st g"><div class="t">Did Not Attend</div><div class="s">Seat Unconfirmed + no check-in at event end</div><span class="wf">E4: not built</span></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="col">
+        <div class="st g"><div class="t">Purchased</div><div class="s">Attendance history kept → student opportunity</div><span class="wf">C4: not built</span></div>
+        <div class="st g"><div class="t">Did Not Purchase</div><div class="s">Stays visible for reporting</div><span class="wf">E4: not built</span></div>
+      </div>
+    </div>
+    <div class="extras">Live stages to remove: <span class="chip">VIP Registrant</span><span class="chip">Contacted</span><span class="chip">Dead</span> · Also reorder: live has Seat Unconfirmed <i>before</i> Seat Confirmed</div>
+  </div>
+
+  <div class="warn">
+    <b>⚠ Possible double-moves.</b> The team built and published its own November and dialer workflows on Oct 16 (about 8–10 AM EDT). The API can't show which pipeline they move or what triggers them. Their names match the <i>October setter</i> stages (Intake Scheduled, Qualified – Seat Confirmed), not the new pipeline stages. Someone has to open them before E/D workflows are built, or the same leads could get moved twice.
+    <div class="list">
+      <span class="wpill">Nov Stage 1: Live Event Funnel</span><span class="wpill">Nov - Stage 3: Attempting Contact</span><span class="wpill">Nov - Stage 4: Intake Scheduled</span><span class="wpill">Nov - Stage 5: Qualified – Seat Confirmed</span><span class="wpill">Nov - Stage 8: Dead</span><span class="wpill">Nov - Invite Launch Sequence</span><span class="wpill">Dialer Pipeline</span><span class="wpill">Dialer Attempt Number</span><span class="wpill">Dial Again</span>
+      <span class="wpill dr">Draft: Nov - Stage 6: VIP – Seat Confirmed</span><span class="wpill dr">Draft: Dial Logged</span>
+    </div>
+  </div>
+  <div class="note">Green box = the stage exists live. Red pill = the workflow that should drive that move (none of D1–D9, E1–E4, C1–C4, P1, S1, S2 exist by name). Other live pipelines (Coaching Sales, Podcast Guests, Speaking &amp; Stages, Coaching Students &amp; Ascension) are built to the checklist and are outside this map.</div>
+</div>
+</section>
+
+<h2><span class="n">2</span>Status by checklist section</h2>
+<div class="grid">
+  <div class="sc"><h3>1 · Before you start</h3><div class="tot">3 items</div>
+    <div class="bar"><i style="width:33.3%;background:var(--g)"></i><i style="width:33.3%;background:var(--r)"></i><i style="width:33.4%;background:var(--x)"></i></div>
+    <div class="cnt"><span><i class="dot d-g"></i>1</span><span><i class="dot d-r"></i>1</span><span><i class="dot d-x"></i>1</span></div>
+    <div class="why">Sales lead user ✔ · no "Sales CRM" field folder · dialer users not identifiable</div></div>
+  <div class="sc"><h3>2 · Contact fields</h3><div class="tot">18 items</div>
+    <div class="bar"><i style="width:83.3%;background:var(--g)"></i><i style="width:5.6%;background:var(--a)"></i><i style="width:11.1%;background:var(--r)"></i></div>
+    <div class="cnt"><span><i class="dot d-g"></i>15</span><span><i class="dot d-a"></i>1</span><span><i class="dot d-r"></i>2</span></div>
+    <div class="why">Missing: Original Lead Source, Last Contact Date · Last Call Disposition has 14 options, not 10</div></div>
+  <div class="sc"><h3>3 · Opportunity fields</h3><div class="tot">20 items</div>
+    <div class="bar"><i style="width:100%;background:var(--r)"></i></div>
+    <div class="cnt"><span><i class="dot d-r"></i>20</span></div>
+    <div class="why">None created yet (only 4 old opportunity fields exist)</div></div>
+  <div class="sc"><h3>4–9 · Pipelines (vs artifact)</h3><div class="tot">6 pipelines · all reporting flags on</div>
+    <div class="bar"><i style="width:83.3%;background:var(--g)"></i><i style="width:16.7%;background:var(--a)"></i></div>
+    <div class="cnt"><span><i class="dot d-g"></i>5</span><span><i class="dot d-a"></i>1</span></div>
+    <div class="why">Event Registration has an extra "Dead" stage</div></div>
+  <div class="sc"><h3>4–9 · Pipelines (vs consolidated doc)</h3><div class="tot">2 in scope</div>
+    <div class="bar"><i style="width:100%;background:var(--a)"></i></div>
+    <div class="cnt"><span><i class="dot d-a"></i>2</span></div>
+    <div class="why">Dialers: 3 extra stages · Event Reg: 3 extra, Not Interested missing, order off</div></div>
+  <div class="sc"><h3>10 · Call dispositions</h3><div class="tot">UI only</div>
+    <div class="bar"><i style="width:100%;background:var(--x)"></i></div>
+    <div class="cnt"><span><i class="dot d-x"></i>can't check</span></div>
+    <div class="why">Before renaming, check these 4 published workflows: Power Dialer, Call Outcome Report, No Answer – Pipeline Move, 2 Contacted Phone</div></div>
+  <div class="sc"><h3>11 · Workflow prep + workflows</h3><div class="tot">35 items</div>
+    <div class="bar"><i style="width:2.9%;background:var(--a)"></i><i style="width:94.3%;background:var(--r)"></i><i style="width:2.8%;background:var(--x)"></i></div>
+    <div class="cnt"><span><i class="dot d-a"></i>1</span><span><i class="dot d-r"></i>33</span><span><i class="dot d-x"></i>1</span></div>
+    <div class="why">Missing: 4 Nov custom values, 8 tags, podcast calendar, 20 workflows · the sales lead is on no discovery calendar</div></div>
+  <div class="sc"><h3>12 · Smart lists &amp; dashboards</h3><div class="tot">UI only</div>
+    <div class="bar"><i style="width:100%;background:var(--x)"></i></div>
+    <div class="cnt"><span><i class="dot d-x"></i>can't check</span></div>
+    <div class="why">Built and checked by hand in GHL</div></div>
+</div>
+
+<h2><span class="n">3</span>Proposed build order</h2>
+<div class="road">
+  <div class="step"><div class="num">1</div><div class="tt">Contact fields</div><div class="dd">Original Lead Source (10 options), Last Contact Date</div><span class="ef">Est. under 30 min</span></div>
+  <div class="step"><div class="num">2</div><div class="tt">Opportunity fields</div><div class="dd">First 5: Lead Source, Event Reg. Source, Campaign Name, Next Follow-Up, Date Contacted. Then the other 15.</div><span class="ef">Est. ~1–2 hrs total</span></div>
+  <div class="step"><div class="num">3</div><div class="tt">Fix pipeline stages</div><div class="dd">Dialers down to 7 stages, Event Reg down to 11 (add Not Interested, reorder). Needs your OK.</div><span class="ef">Est. under 30 min</span></div>
+  <div class="step"><div class="num">4</div><div class="tt">Custom values + tags</div><div class="dd">4 Nov Event values, 8 tags (needs event name and dates)</div><span class="ef">Est. under 30 min</span></div>
+  <div class="step big"><div class="num">5</div><div class="tt">Workflows (by hand)</div><div class="dd">E1 entry → confirm calls (8 tries) → E3 check-in → E4 event end, then D1–D9 dialer outcomes</div><span class="ef">Est. biggest step: days, incl. testing</span></div>
+  <div class="step"><div class="num">6</div><div class="tt">Calendars</div><div class="dd">Add the sales lead to a discovery calendar, create a podcast recording calendar</div><span class="ef">Est. under 1 hr</span></div>
+  <div class="step"><div class="num">7</div><div class="tt">Lists, dashboards, go-live test</div><div class="dd">Smart lists, KPI dashboards, test contacts through every branch, then approval</div><span class="ef">Est. about half a day+</span></div>
+</div>
+<div class="note">Effort figures are rough estimates for a GHL-experienced builder, not quotes.</div>
+
+<h2><span class="n">4</span>Decisions needed from you</h2>
+<div class="dec">
+  <div class="dq hot"><b>1. Trim the live stages?</b>Match the consolidated doc: remove 6 stages, add Not Interested. Only 1 test opportunity is affected.</div>
+  <div class="dq"><b>2. Call outcome options</b>Keep the 4 extras (Registered, Seat Unconfirmed, VIP Purchased, Do Not Contact) or trim to 10?</div>
+  <div class="dq"><b>3. Attempt counter</b>Dial Attempt Count or Contact Attempts? Use one.</div>
+  <div class="dq"><b>4. Field folder</b>Create "Sales CRM" and move the fields into it, or keep the current folders?</div>
+  <div class="dq"><b>5. Lead Source in two places</b>Keep it on both the contact and the opportunity?</div>
+  <div class="dq"><b>6. Who are the dialers?</b>Name the GHL users for round-robin.</div>
+  <div class="dq hot"><b>7. Oct 16 team workflows</b>Are they the team's version of E/D? Which pipeline do they move? Open them before we build.</div>
+  <div class="dq"><b>8. Event details from the sales lead</b>Nov event name and dates, program list, coaching conversion formula.</div>
+</div>
+
+<footer>Source: read-only CRM audit, Oct 19, 2026 · anonymized summary · no changes made in GHL.</footer>
+</div></body></html>
