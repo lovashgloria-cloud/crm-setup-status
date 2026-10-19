@@ -70,146 +70,95 @@ h2 .n{background:var(--ink);color:#fff;border-radius:8px;width:28px;height:28px;
 .dq b{display:block;margin-bottom:2px}
 .dq.hot{border-left-color:var(--a);background:#fffbeb}
 footer{margin-top:24px;font-size:12px;color:var(--mut)}
+
+.wf.ok{color:#15803d;border-color:#86efac;background:#f0fdf4}
+.wf.fix{color:#b45309;border-color:#fbbf24;background:#fffbeb}
+.wf.gr{color:#475569;border-color:#cbd5e1;background:#f8fafc}
+.wf{display:block;width:fit-content;max-width:100%}
+.chip.keep{text-decoration:none;background:#fff;border-style:dashed}
+.chip.extra{text-decoration:none;background:var(--xb);border-color:#94a3b8;color:#334155}
+.st.ex{border-color:#94a3b8;background:#f1f5f9;border-style:dashed}
+.st{max-width:215px}
+.panels{display:grid;grid-template-columns:1.25fr 1fr;gap:12px;margin-top:6px}
+.pn{border-radius:12px;padding:12px 16px;border:2px solid}
+.pn.built{border-color:#86efac;background:#f0fdf4}
+.pn.fixes{border-color:var(--a);background:var(--ab)}
+.pn h4{margin:0 0 8px;font-size:15px}
+.pn table{border-collapse:collapse;width:100%;font-size:12.5px}
+.pn td{padding:3px 6px;border-top:1px solid rgba(0,0,0,.06);vertical-align:top}
+.pn td:first-child{font-weight:600;white-space:nowrap}
+.tg{display:inline-block;font-size:10.5px;font-weight:700;border-radius:999px;padding:0 7px;margin-right:4px}
+.tg.g{background:var(--gb);color:#15803d}.tg.a{background:#fde68a;color:#92400e}.tg.x{background:var(--xb);color:#334155}
+.pn ol{margin:0;padding-left:20px;font-size:13px}.pn li{margin-bottom:5px}
+.grid{grid-template-columns:repeat(5,1fr)}
+.updated{display:inline-block;background:#fde68a;color:#78350f;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;margin-left:8px}
 </style></head><body><div class="wrap">
-
 <header>
-  <div><h1>CRM Setup Status</h1><div class="sub">GoHighLevel setup status: what's done and what's next</div></div>
-  <div class="meta">Client sub-account (anonymized)<br>Audit: Mon Oct 19, 2026 (EDT)<br><span class="badge">Read-only: nothing changed in GHL</span></div>
+  <div><h1>CRM Setup Status</h1><div class="sub">GoHighLevel setup status: what's built and what's next</div></div>
+  <div class="meta">Client sub-account (anonymized)<br>Audit: Oct 19, 2026 · updated 2:00 AM EDT with the team's workflows<br><span class="badge">Read-only: nothing changed in GHL</span></div>
 </header>
-
 <div class="legend">
-  <span><i class="dot d-g"></i>Done</span>
-  <span><i class="dot d-a"></i>Partly done / needs a fix</span>
-  <span><i class="dot d-r"></i>Missing</span>
-  <span><i class="dot d-x"></i>Can't check through the API / needs a decision</span>
+  <span><i class="dot d-g"></i>Done / built</span><span><i class="dot d-a"></i>Built, needs a fix</span><span><i class="dot d-r"></i>Missing</span><span><i class="dot d-x"></i>Can't check through the API / extra / needs a decision</span>
 </div>
-
 <section id="map">
 <h2><span class="n">1</span>Process map: the two pipelines (from your consolidated doc)</h2>
 <div class="card">
 
-  <div class="lane">
-    <div class="lane-h"><b>Outbound Dialers</b><span class="own">Owner: sales lead · Calls: hired dialers (round-robin) · Stages built ✔</span></div>
-    <div class="flow">
-      <div class="col"><div class="st trig"><div class="t">✉ Email open / click</div><div class="s">Eligible, not yet registered lead</div><span class="wf">Entry + S2: not built</span></div></div>
-      <div class="arrow">→</div>
-      <div class="col"><div class="st g"><div class="t">New Warm Lead</div><div class="s">1 opportunity per person, owner kept</div><span class="wf">Entry: not built</span></div></div>
-      <div class="arrow">→</div>
-      <div class="col"><div class="st g"><div class="t">Attempting Contact</div><div class="s">Counts unanswered calls</div><span class="wf">D1–D9: not built</span></div></div>
-      <div class="arrow">→</div>
-      <div class="col"><div class="st g"><div class="t">Contacted</div><div class="s">Spoke with the lead</div><span class="wf">D1–D9: not built</span></div></div>
-      <div class="arrow">→</div>
-      <div class="col"><div class="st g"><div class="t">Registration Link Sent</div><div class="s">Link sent by the dialer</div><span class="wf">D1–D9: not built</span></div></div>
-      <div class="arrow">→</div>
-      <div class="col">
-        <div class="st g"><div class="t">Registered</div><div class="s">Stops promo emails and calls</div><span class="wf">E1: not built</span></div>
-        <div class="st g"><div class="t">Not Interested</div><div class="s">Stays visible, never reopened</div><span class="wf">D-series: not built</span></div>
-        <div class="st g"><div class="t">Dead</div><div class="s">After 8 unanswered calls</div><span class="wf">D-series: not built</span></div>
-      </div>
-    </div>
-    <div class="extras">Live stages to remove: <span class="chip">Not Registered</span><span class="chip">Unresponsive</span><span class="chip">Current Coaching Student</span></div>
-  </div>
+<div class="lane">
+ <div class="lane-h"><b>Outbound Dialers</b><span class="own">Owner: sales lead · Calls: hired dialers (round-robin) · All stages exist ✔</span></div>
+ <div class="flow">
+  <div class="col"><div class="st trig"><div class="t">✉ Email open / click</div><div class="s">Eligible, not yet registered lead</div><span class="wf fix">⚠ Built, needs fix: Invite Launch Sequence: no trigger, wait date passed</span><span class="wf ok">✔ Built: open → tag opened-email-nov-live-event</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">New Warm Lead</div><div class="s">1 opportunity per person, owner kept</div><span class="wf fix">⚠ Built, needs fix: Dialer Pipeline: creates opp in old dialer pipeline, assigns all to one person</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">Attempting Contact</div><div class="s">Counts unanswered calls</div><span class="wf ok">✔ Built: Dialer Attempt Number (+1 per call)</span><span class="wf ok">✔ Built: Dial Again (calls 2–7)</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">Contacted</div><div class="s">Spoke with the lead</div><span class="wf fix">⚠ Built, needs fix: Dial Logged is a draft and overlaps Dialer Attempt Number</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">Registration Link Sent</div><div class="s">Link sent by the dialer</div><span class="wf fix">⚠ Built, needs fix: Dial Logged (draft)</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">Registered</div><div class="s">Stops promo emails and calls</div><span class="wf gr">Stages 4/5 remove from dialer flows · move to Registered not verified</span></div><div class="st g"><div class="t">Not Interested</div><div class="s">Stays visible, never reopened</div><span class="wf fix">⚠ Built, needs fix: only in Dial Logged (draft)</span></div><div class="st g"><div class="t">Dead</div><div class="s">After 8 unanswered calls</div><span class="wf ok">✔ Built: Dialer Attempt Number (>8)</span><span class="wf ok">✔ Built: Stage 8: Dead</span></div></div>
+ </div>
+ <div class="extras">Live stages to remove: <span class="chip">Not Registered</span><span class="chip">Unresponsive</span><span class="chip">Current Coaching Student</span> · <b style="color:#b45309">Mismatch:</b> entry creates opportunities in the old pipeline, but the 8-call Dead rule moves them in Outbound Dialers</div>
+</div>
+<div class="handoff"><div class="bar"></div>Registers (dialer link, ads, DMs, website…) → <span class="wf ok" style="margin:0;display:inline-block">✔ Built: Nov Stage 1: Live Event Funnel</span> webhook → contact, setter, fields, opt-in tag, sheet, Slack, VIP check, 10 lead-source branches → opportunity + call task <span class="wf gr" style="margin:0;display:inline-block">node detail not yet checked</span></div>
 
-  <div class="handoff"><div class="bar"></div>Registers (dialer link, ads, DMs, website…) → <span class="wf" style="margin:0">E1 registration handoff: not built</span> sets Ticket Type, source, round-robin dialer; removes the contact from the dialer and promo workflows</div>
-
-  <div class="lane">
-    <div class="lane-h"><b>Event Registration — Nov Event</b><span class="own">Owner: sales lead · Calls: sales lead + dialers · 1 opportunity per person per event · 1 test opportunity live</span></div>
-    <div class="flow">
-      <div class="col"><div class="st g"><div class="t">New Registrant</div><div class="s">GA or VIP in the Ticket Type field</div><span class="wf">E1 + E2 VIP: not built</span></div></div>
-      <div class="arrow">→</div>
-      <div class="col"><div class="st g"><div class="t">Attempting Contact</div><div class="s">Attendance-confirm calls</div><span class="wf">Confirm calls: not built</span></div></div>
-      <div class="arrow">→</div>
-      <div class="col">
-        <div class="st g"><div class="t">Seat Confirmed</div><div class="s">Will attend</div></div>
-        <div class="st g"><div class="t">Seat Unconfirmed</div><div class="s">After 8 unanswered calls</div></div>
-        <div class="st r"><div class="t">Not Interested</div><div class="s">MISSING stage: add it</div></div>
-      </div>
-      <div class="arrow">→</div>
-      <div class="col">
-        <div class="st g"><div class="t">Attended Day 1</div><div class="s">Check-in tag + date kept</div><span class="wf">E3: not built</span></div>
-        <div class="st g"><div class="t">Attended Day 2</div><div class="s">Check-in tag + date kept</div><span class="wf">E3: not built</span></div>
-        <div class="st g"><div class="t">Attended Both Days</div><div class="s">Both dates kept</div><span class="wf">E3: not built</span></div>
-        <div class="st g"><div class="t">Did Not Attend</div><div class="s">Seat Unconfirmed + no check-in at event end</div><span class="wf">E4: not built</span></div>
-      </div>
-      <div class="arrow">→</div>
-      <div class="col">
-        <div class="st g"><div class="t">Purchased</div><div class="s">Attendance history kept → student opportunity</div><span class="wf">C4: not built</span></div>
-        <div class="st g"><div class="t">Did Not Purchase</div><div class="s">Stays visible for reporting</div><span class="wf">E4: not built</span></div>
-      </div>
-    </div>
-    <div class="extras">Live stages to remove: <span class="chip">VIP Registrant</span><span class="chip">Contacted</span><span class="chip">Dead</span> · Also reorder: live has Seat Unconfirmed <i>before</i> Seat Confirmed</div>
-  </div>
-
-  <div class="warn">
-    <b>⚠ Possible double-moves.</b> The team built and published its own November and dialer workflows on Oct 16 (about 8–10 AM EDT). The API can't show which pipeline they move or what triggers them. Their names match the <i>October setter</i> stages (Intake Scheduled, Qualified – Seat Confirmed), not the new pipeline stages. Someone has to open them before E/D workflows are built, or the same leads could get moved twice.
-    <div class="list">
-      <span class="wpill">Nov Stage 1: Live Event Funnel</span><span class="wpill">Nov - Stage 3: Attempting Contact</span><span class="wpill">Nov - Stage 4: Intake Scheduled</span><span class="wpill">Nov - Stage 5: Qualified – Seat Confirmed</span><span class="wpill">Nov - Stage 8: Dead</span><span class="wpill">Nov - Invite Launch Sequence</span><span class="wpill">Dialer Pipeline</span><span class="wpill">Dialer Attempt Number</span><span class="wpill">Dial Again</span>
-      <span class="wpill dr">Draft: Nov - Stage 6: VIP – Seat Confirmed</span><span class="wpill dr">Draft: Dial Logged</span>
-    </div>
-  </div>
-  <div class="note">Green box = the stage exists live. Red pill = the workflow that should drive that move (none of D1–D9, E1–E4, C1–C4, P1, S1, S2 exist by name). Other live pipelines (Coaching Sales, Podcast Guests, Speaking &amp; Stages, Coaching Students &amp; Ascension) are built to the checklist and are outside this map.</div>
+<div class="lane">
+ <div class="lane-h"><b>Event Registration — Nov Event</b><span class="own">Owner: sales lead · Event: Nov 14–15, event city · 1 opportunity per person per event</span></div>
+ <div class="flow">
+  <div class="col"><div class="st g"><div class="t">New Registrant</div><div class="s">GA or VIP in the Ticket Type field</div><span class="wf ok">✔ Built: Nov Stage 1 (VIP → confirmation emails)</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">Attempting Contact</div><div class="s">Attendance-confirm calls</div><span class="wf fix">⚠ Built, needs fix: Stage 3 only sends one email and waits 1 day; no 8-call rule</span></div><div class="st ex"><div class="t">Intake Scheduled</div><div class="s">Extra step, not in the doc</div><span class="wf gr">Stage 4: books on Intake Call Schedule</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">Seat Confirmed</div><div class="s">Will attend</div><span class="wf ok">✔ Built: Stage 5: SMS + tags</span><span class="wf fix">⚠ Built, needs fix: Stage 6 VIP (draft): old pipeline, Oct dates</span></div><div class="st g"><div class="t">Seat Unconfirmed</div><div class="s">After 8 unanswered calls</div><span class="wf">✖ Missing: 8-call → Seat Unconfirmed</span></div><div class="st r"><div class="t">Not Interested</div><div class="s">MISSING stage: add it</div><span class="wf">✖ Missing: stage + handler</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">Attended Day 1</div><div class="s">Check-in tag + date kept</div><span class="wf">✖ Missing: E3 check-in</span></div><div class="st g"><div class="t">Attended Day 2</div><div class="s">Check-in tag + date kept</div><span class="wf">✖ Missing: E3 check-in</span></div><div class="st g"><div class="t">Attended Both Days</div><div class="s">Both dates kept</div><span class="wf">✖ Missing: E3 check-in</span></div><div class="st g"><div class="t">Did Not Attend</div><div class="s">Seat Unconfirmed + no check-in at event end</div><span class="wf">✖ Missing: E4 event end</span></div></div>
+  <div class="arrow">→</div><div class="col"><div class="st g"><div class="t">Purchased</div><div class="s">Attendance history kept → student opportunity</div><span class="wf">✖ Missing: C4 purchase handoff</span></div><div class="st g"><div class="t">Did Not Purchase</div><div class="s">Stays visible for reporting</div><span class="wf">✖ Missing: E4 event end</span></div></div>
+ </div>
+ <div class="extras">Live stages to remove: <span class="chip">VIP Registrant</span><span class="chip">Contacted</span> · <span class="chip keep">Dead: keep (Stage 8 uses it)</span> · Reorder: live has Seat Unconfirmed <i>before</i> Seat Confirmed · Related drafts for check-in: Event QR Check-In Logger, QR Check in email</div>
+</div>
+<div class="panels"><div class="pn built"><h4>✔ What the team already built (Nov Event Funnel folder, read in the GHL UI)</h4><table>
+<tr><td>Nov Stage 1: Live Event Funnel</td><td><span class="tg g">Published</span>112 steps: webhook → contact, setter, fields, opt-in tag, sheet, Slack, VIP check, 10 lead-source branches → opportunity + call</td></tr>
+<tr><td>Nov - Stage 3: Attempting Contact</td><td><span class="tg g">Published</span>Stage trigger → "can we confirm your seat?" email, wait 1 day</td></tr>
+<tr><td>Nov - Stage 4: Intake Scheduled</td><td><span class="tg g">Published</span>Intake call booked → removes from dialer flows, sets Intake Call Date, SMS</td></tr>
+<tr><td>Nov - Stage 5: Qualified – Seat Confirmed</td><td><span class="tg g">Published</span>Seat Confirmed → removes from dialer flows, SMS, tags</td></tr>
+<tr><td>Nov - Stage 8: Dead</td><td><span class="tg g">Published</span>Dead in either pipeline → tag "dead leads", opportunity lost</td></tr>
+<tr><td>Dialer Pipeline</td><td><span class="tg a">Published · 16,125 in</span>Email opened → assigns one person, Lead Source = Email Marketing, opportunity in <b>old pipeline</b></td></tr>
+<tr><td>Dialer Attempt Number</td><td><span class="tg g">Published · 1,834 in</span>Each call → +1; more than 8 → Outbound Dialers Dead; otherwise → Dial Again</td></tr>
+<tr><td>Dial Again</td><td><span class="tg g">Published · 36 in</span>Calls 2–7 → notification + manual call task</td></tr>
+<tr><td>Nov - Invite Launch Sequence</td><td><span class="tg a">Published</span>No trigger; open → tags; waits until Sept 23 (passed)</td></tr>
+<tr><td>Nov - Stage 6: VIP – Seat Confirmed</td><td><span class="tg x">Draft</span>Old October pipeline and October dates</td></tr>
+<tr><td>Dial Logged</td><td><span class="tg x">Draft</span>Last Dial Outcome tree, overlaps Dialer Attempt Number</td></tr>
+</table><div class="note">Also published: other opt-in funnels (lead magnet, second live event, webinar). Not opened yet: NOV - Opt In and VIP Email Sequence (draft), Dialer subfolder, October Event Funnel, Vault, Booked Calls, Tracking, Stage 1 and Dial Logged step detail.</div></div><div class="pn fixes"><h4>⚠ Fixes before go-live</h4><ol>
+<li><b>Dialer Pipeline:</b> create the opportunity in <b>Outbound Dialers</b>, not the old pipeline, and use round-robin. Today the entry and the Dead rule land in different pipelines.</li>
+<li><b>Stage 6 VIP:</b> point it at Event Registration and change the SMS to Nov 14–15, then publish.</li>
+<li><b>Invite Launch Sequence:</b> add a trigger and update the Sept 23 wait date.</li>
+<li><b>Dial Logged vs Dialer Attempt Number:</b> pick one to handle call outcomes, to avoid double counting.</li>
+<li><b>Stage 3:</b> add the 8-call → Seat Unconfirmed rule and a Not Interested path.</li>
+<li><b>Dead stage:</b> keep it in Event Registration, or change Stage 8 first.</li>
+<li>Build the missing <b>E3 check-in</b>, <b>E4 event end</b> and <b>C4 purchase handoff</b>.</li>
+</ol></div></div>
+<div class="note">Boxes show whether the stage exists live. Pills show the workflow that drives each move: green = the team built it, amber = built but needs a fix, red = missing, grey = extra or not verified.</div>
 </div>
 </section>
-
 <h2><span class="n">2</span>Status by checklist section</h2>
-<div class="grid">
-  <div class="sc"><h3>1 · Before you start</h3><div class="tot">3 items</div>
-    <div class="bar"><i style="width:33.3%;background:var(--g)"></i><i style="width:33.3%;background:var(--r)"></i><i style="width:33.4%;background:var(--x)"></i></div>
-    <div class="cnt"><span><i class="dot d-g"></i>1</span><span><i class="dot d-r"></i>1</span><span><i class="dot d-x"></i>1</span></div>
-    <div class="why">Sales lead user ✔ · no "Sales CRM" field folder · dialer users not identifiable</div></div>
-  <div class="sc"><h3>2 · Contact fields</h3><div class="tot">18 items</div>
-    <div class="bar"><i style="width:83.3%;background:var(--g)"></i><i style="width:5.6%;background:var(--a)"></i><i style="width:11.1%;background:var(--r)"></i></div>
-    <div class="cnt"><span><i class="dot d-g"></i>15</span><span><i class="dot d-a"></i>1</span><span><i class="dot d-r"></i>2</span></div>
-    <div class="why">Missing: Original Lead Source, Last Contact Date · Last Call Disposition has 14 options, not 10</div></div>
-  <div class="sc"><h3>3 · Opportunity fields</h3><div class="tot">20 items</div>
-    <div class="bar"><i style="width:100%;background:var(--r)"></i></div>
-    <div class="cnt"><span><i class="dot d-r"></i>20</span></div>
-    <div class="why">None created yet (only 4 old opportunity fields exist)</div></div>
-  <div class="sc"><h3>4–9 · Pipelines (vs artifact)</h3><div class="tot">6 pipelines · all reporting flags on</div>
-    <div class="bar"><i style="width:83.3%;background:var(--g)"></i><i style="width:16.7%;background:var(--a)"></i></div>
-    <div class="cnt"><span><i class="dot d-g"></i>5</span><span><i class="dot d-a"></i>1</span></div>
-    <div class="why">Event Registration has an extra "Dead" stage</div></div>
-  <div class="sc"><h3>4–9 · Pipelines (vs consolidated doc)</h3><div class="tot">2 in scope</div>
-    <div class="bar"><i style="width:100%;background:var(--a)"></i></div>
-    <div class="cnt"><span><i class="dot d-a"></i>2</span></div>
-    <div class="why">Dialers: 3 extra stages · Event Reg: 3 extra, Not Interested missing, order off</div></div>
-  <div class="sc"><h3>10 · Call dispositions</h3><div class="tot">UI only</div>
-    <div class="bar"><i style="width:100%;background:var(--x)"></i></div>
-    <div class="cnt"><span><i class="dot d-x"></i>can't check</span></div>
-    <div class="why">Before renaming, check these 4 published workflows: Power Dialer, Call Outcome Report, No Answer – Pipeline Move, 2 Contacted Phone</div></div>
-  <div class="sc"><h3>11 · Workflow prep + workflows</h3><div class="tot">35 items</div>
-    <div class="bar"><i style="width:2.9%;background:var(--a)"></i><i style="width:94.3%;background:var(--r)"></i><i style="width:2.8%;background:var(--x)"></i></div>
-    <div class="cnt"><span><i class="dot d-a"></i>1</span><span><i class="dot d-r"></i>33</span><span><i class="dot d-x"></i>1</span></div>
-    <div class="why">Missing: 4 Nov custom values, 8 tags, podcast calendar, 20 workflows · the sales lead is on no discovery calendar</div></div>
-  <div class="sc"><h3>12 · Smart lists &amp; dashboards</h3><div class="tot">UI only</div>
-    <div class="bar"><i style="width:100%;background:var(--x)"></i></div>
-    <div class="cnt"><span><i class="dot d-x"></i>can't check</span></div>
-    <div class="why">Built and checked by hand in GHL</div></div>
-</div>
-
+<div class="grid"><div class="sc"><h3>1 · Before you start</h3><div class="tot">3 items</div><div class="bar"><i style="width:33.3%;background:var(--g)"></i><i style="width:33.3%;background:var(--r)"></i><i style="width:33.3%;background:var(--x)"></i></div><div class="cnt"><span><i class="dot d-g"></i>1</span><span><i class="dot d-r"></i>1</span><span><i class="dot d-x"></i>1</span></div><div class="why">Sales lead user ✔ · no "Sales CRM" field folder · dialer users not named</div></div><div class="sc"><h3>2 · Contact fields</h3><div class="tot">18 items</div><div class="bar"><i style="width:83.3%;background:var(--g)"></i><i style="width:5.6%;background:var(--a)"></i><i style="width:11.1%;background:var(--r)"></i></div><div class="cnt"><span><i class="dot d-g"></i>15</span><span><i class="dot d-a"></i>1</span><span><i class="dot d-r"></i>2</span></div><div class="why">Missing: Original Lead Source, Last Contact Date · Last Call Disposition has 14 options</div></div><div class="sc"><h3>3 · Opportunity fields</h3><div class="tot">20 items</div><div class="bar"><i style="width:100.0%;background:var(--r)"></i></div><div class="cnt"><span><i class="dot d-r"></i>20</span></div><div class="why">None created yet</div></div><div class="sc"><h3>4–9 · Pipelines (vs artifact)</h3><div class="tot">6 pipelines · reporting flags on</div><div class="bar"><i style="width:83.3%;background:var(--g)"></i><i style="width:16.7%;background:var(--a)"></i></div><div class="cnt"><span><i class="dot d-g"></i>5</span><span><i class="dot d-a"></i>1</span></div><div class="why">Event Registration has an extra Dead stage (now used by Stage 8)</div></div><div class="sc"><h3>4–9 · Pipelines (vs doc)</h3><div class="tot">2 in scope</div><div class="bar"><i style="width:100.0%;background:var(--a)"></i></div><div class="cnt"><span><i class="dot d-a"></i>2</span></div><div class="why">Dialers: 3 extra stages · Event Reg: 2 extra, Not Interested missing, order off</div></div><div class="sc"><h3>10 · Call dispositions</h3><div class="tot">UI only</div><div class="bar"><i style="width:100%;background:var(--x)"></i></div><div class="cnt"><span><i class="dot d-x"></i>can't check</span></div><div class="why">Check Power Dialer, Call Outcome Report, No Answer - Pipeline Move, 2 Contacted Phone before renaming</div></div><div class="sc"><h3>11a · Workflow prep</h3><div class="tot">15 items</div><div class="bar"><i style="width:6.7%;background:var(--a)"></i><i style="width:86.7%;background:var(--r)"></i><i style="width:6.7%;background:var(--x)"></i></div><div class="cnt"><span><i class="dot d-a"></i>1</span><span><i class="dot d-r"></i>13</span><span><i class="dot d-x"></i>1</span></div><div class="why">Missing 4 Nov values, 8 planned tags (the team uses its own tag names), podcast calendar; the sales lead is on no discovery calendar</div></div><div class="sc"><h3>11b · In-scope workflows <span class='updated'>UPDATED</span></h3><div class="tot">14 functions</div><div class="bar"><i style="width:35.7%;background:var(--g)"></i><i style="width:35.7%;background:var(--a)"></i><i style="width:28.6%;background:var(--r)"></i></div><div class="cnt"><span><i class="dot d-g"></i>5</span><span><i class="dot d-a"></i>5</span><span><i class="dot d-r"></i>4</span></div><div class="why">Built: E1 entry, 8-call Dead, retries, Seat Confirmed, Dead · Fix: entry, outcomes, VIP, confirm calls, invite · Missing: Seat Unconfirmed, E3, E4, C4</div></div><div class="sc"><h3>11c · Later-pipeline workflows</h3><div class="tot">C1–C3, P1, S1, S2</div><div class="bar"><i style="width:100.0%;background:var(--r)"></i></div><div class="cnt"><span><i class="dot d-r"></i>6</span></div><div class="why">Coaching, podcast, upgrades, student exclusion: not started</div></div><div class="sc"><h3>12 · Smart lists &amp; dashboards</h3><div class="tot">UI only</div><div class="bar"><i style="width:100%;background:var(--x)"></i></div><div class="cnt"><span><i class="dot d-x"></i>can't check</span></div><div class="why">Built and checked by hand in GHL</div></div></div>
 <h2><span class="n">3</span>Proposed build order</h2>
-<div class="road">
-  <div class="step"><div class="num">1</div><div class="tt">Contact fields</div><div class="dd">Original Lead Source (10 options), Last Contact Date</div><span class="ef">Est. under 30 min</span></div>
-  <div class="step"><div class="num">2</div><div class="tt">Opportunity fields</div><div class="dd">First 5: Lead Source, Event Reg. Source, Campaign Name, Next Follow-Up, Date Contacted. Then the other 15.</div><span class="ef">Est. ~1–2 hrs total</span></div>
-  <div class="step"><div class="num">3</div><div class="tt">Fix pipeline stages</div><div class="dd">Dialers down to 7 stages, Event Reg down to 11 (add Not Interested, reorder). Needs your OK.</div><span class="ef">Est. under 30 min</span></div>
-  <div class="step"><div class="num">4</div><div class="tt">Custom values + tags</div><div class="dd">4 Nov Event values, 8 tags (needs event name and dates)</div><span class="ef">Est. under 30 min</span></div>
-  <div class="step big"><div class="num">5</div><div class="tt">Workflows (by hand)</div><div class="dd">E1 entry → confirm calls (8 tries) → E3 check-in → E4 event end, then D1–D9 dialer outcomes</div><span class="ef">Est. biggest step: days, incl. testing</span></div>
-  <div class="step"><div class="num">6</div><div class="tt">Calendars</div><div class="dd">Add the sales lead to a discovery calendar, create a podcast recording calendar</div><span class="ef">Est. under 1 hr</span></div>
-  <div class="step"><div class="num">7</div><div class="tt">Lists, dashboards, go-live test</div><div class="dd">Smart lists, KPI dashboards, test contacts through every branch, then approval</div><span class="ef">Est. about half a day+</span></div>
-</div>
+<div class="road"><div class="step"><div class="num">1</div><div class="tt">Fix Dialer Pipeline</div><div class="dd">Create the opportunity in Outbound Dialers and use round-robin. Test on a copy first: 16k contacts already went through it.</div><span class="ef">Est. 1–2 hrs + test</span></div><div class="step"><div class="num">2</div><div class="tt">Add missing fields</div><div class="dd">Contact: Original Lead Source, Last Contact Date. Opportunity: 5 core fields first, then the other 15.</div><span class="ef">Est. ~1–2 hrs</span></div><div class="step"><div class="num">3</div><div class="tt">Align stages</div><div class="dd">Dialers down to 7. Event Reg: drop VIP Registrant and Contacted, add Not Interested, reorder. Keep Dead or update Stage 8.</div><span class="ef">Est. under 1 hr</span></div><div class="step"><div class="num">4</div><div class="tt">Fix and clean drafts</div><div class="dd">Stage 6 (pipeline + dates), Invite Launch (trigger + date), choose Dial Logged or Dialer Attempt Number</div><span class="ef">Est. a few hrs</span></div><div class="step big"><div class="num">5</div><div class="tt">Build the missing workflows</div><div class="dd">E3 check-in (Day 1/2 tags + dates), E4 event end, C4 purchase → student, Seat Unconfirmed after 8 calls</div><span class="ef">Est. biggest step: 1–2 days incl. testing</span></div><div class="step"><div class="num">6</div><div class="tt">Calendars</div><div class="dd">Add the sales lead to a discovery calendar, create a podcast recording calendar</div><span class="ef">Est. under 1 hr</span></div><div class="step"><div class="num">7</div><div class="tt">Lists, dashboards, test</div><div class="dd">Smart lists, KPI dashboards, test contacts through every branch, then approval</div><span class="ef">Est. about half a day+</span></div></div>
 <div class="note">Effort figures are rough estimates for a GHL-experienced builder, not quotes.</div>
-
 <h2><span class="n">4</span>Decisions needed from you</h2>
-<div class="dec">
-  <div class="dq hot"><b>1. Trim the live stages?</b>Match the consolidated doc: remove 6 stages, add Not Interested. Only 1 test opportunity is affected.</div>
-  <div class="dq"><b>2. Call outcome options</b>Keep the 4 extras (Registered, Seat Unconfirmed, VIP Purchased, Do Not Contact) or trim to 10?</div>
-  <div class="dq"><b>3. Attempt counter</b>Dial Attempt Count or Contact Attempts? Use one.</div>
-  <div class="dq"><b>4. Field folder</b>Create "Sales CRM" and move the fields into it, or keep the current folders?</div>
-  <div class="dq"><b>5. Lead Source in two places</b>Keep it on both the contact and the opportunity?</div>
-  <div class="dq"><b>6. Who are the dialers?</b>Name the GHL users for round-robin.</div>
-  <div class="dq hot"><b>7. Oct 16 team workflows</b>Are they the team's version of E/D? Which pipeline do they move? Open them before we build.</div>
-  <div class="dq"><b>8. Event details from the sales lead</b>Nov event name and dates, program list, coaching conversion formula.</div>
-</div>
-
-<footer>Source: read-only CRM audit, Oct 19, 2026 · anonymized summary · no changes made in GHL.</footer>
+<div class="dec"><div class="dq hot"><b>1. Fix Dialer Pipeline in place?</b>It's live with 16k enrolled. Edit it, or publish a fixed copy and turn the old one off?</div><div class="dq hot"><b>2. Who handles call outcomes?</b>Dialer Attempt Number (live) or Dial Logged (draft)? Keep one.</div><div class="dq "><b>3. Who are the dialers?</b>Name the GHL users for round-robin. Today everything goes to one person.</div><div class="dq "><b>4. Intake call step</b>Stage 4 adds an intake-call step that's not in the doc. Keep it, and should it be a stage?</div><div class="dq "><b>5. Tag names</b>Use the team's tags (opened-email-nov-live-event, dead leads, confirmed attending) instead of the planned nov-* tags?</div><div class="dq "><b>6. Event Reg stages</b>Remove VIP Registrant and Contacted, add Not Interested. Keep Dead for Stage 8?</div><div class="dq "><b>7. Call outcome options</b>Keep the 4 extras on Last Call Disposition or trim to 10? Retire the unused Contact Attempts field?</div><div class="dq "><b>8. Still from the sales lead</b>Full program list and the coaching conversion formula. Field folder: create "Sales CRM" or keep current?</div></div>
+<footer>Source: read-only CRM audit (API) + read-only review of the team's workflows in the GHL UI, Oct 19, 2026 · anonymized summary · no changes made in GHL.</footer>
 </div></body></html>
